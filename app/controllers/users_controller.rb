@@ -16,6 +16,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def destroy
+     session.delete(:user_id)
+     flash[:notice] = 'ログアウトしました'
+     redirect_to new_session_path
+  end
+
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
