@@ -8,7 +8,7 @@
   <tbody>
     <% @feeds.each do |feed| %>
       <tr>
-        <td><%= feed.image %></td>
+        <td><%= image_tag feed.image.to_s %></td>
         <td><%= feed.content %></td>
         <td><%= link_to '詳細を確認する', feed_path(feed.id) %></td>
         <td><%= link_to '編集', edit_feed_path(feed.id) %></td>

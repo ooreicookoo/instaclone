@@ -15,8 +15,6 @@
   </div>
   <div class="content">
     <%= form.label :写真を選択 %>
-    <!-- 確認画面から新規作成画面に戻った時に、 -->
-    <!-- アップロードした画像を表示させるための記述 -->
     <%= image_tag(@feed.image.url) if @feed.image && @feed.image.url %>
     <%= form.file_field :image %>
     <%= form.hidden_field :image_cache %>
