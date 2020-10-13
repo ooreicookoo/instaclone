@@ -17,42 +17,34 @@ class FeedsController < ApplicationController
   end
 
   def confirm
-    @feed = Feed.new(feed_params)
+    @feed = current_user.feeds.build(feed_params)
+    render :new if @feed.invalid?
   end
 
   def edit
   end
 
   def create
-    @feed = Feed.new(feed_params)
-
-    respond_to do |format|
-      if @feed.save
-        format.html { redirect_to @feed, notice: 'Feed was successfully created.' }
-        format.json { render :show, status: :created, location: @feed }
-      else
-        format.html { render :new }
-        format.json { render json: @feed.errors, status: :unprocessable_entity }
-      end
+    @feed = current_user.feeds.build(feed_params)
+    if @feed.save
+      redirect_to feeds_path, notice: "投稿しました！"
+    else
+      render:new
     end
   end
 
   def update
-    respond_to do |format|
       if @feed.update(feed_params)
-        format.html { redirect_to @feed, notice: 'Feed was successfully updated.' }
-        format.json { render :show, status: :ok, location: @feed }
-      else
-        format.html { render :edit }
-        format.json { render json: @feed.errors, status: :unprocessable_entity }
-      end
+        fredirect_to feeds_path, notice: "投稿内容を編集しました！"
+    else
+      render :edit
     end
   end
 
   def destroy
     @feed.destroy
     respond_to do |format|
-      format.html { redirect_to feeds_url, notice: 'Feed was successfully destroyed.' }
+      format.html { redirect_to feeds_url, notice: '投稿を削除しました' }
       format.json { head :no_content }
     end
   end
@@ -63,6 +55,6 @@ class FeedsController < ApplicationController
     end
 
     def feed_params
-      params.require(:feed).permit(:image, :image_cache)
+      params.require(:feed).permit(:image, :image_cache, :content)
     end
 end
