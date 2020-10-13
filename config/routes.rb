@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
-  resources :sessions, only: [:new, :create, :destroy]
-  resources :users, only: [:new, :create, :show]
   resources :feeds do
     collection do
       post :confirm
     end
-  end  
+  end
+  resources :sessions, only: [:new, :create, :destroy]
+  get '/sessions', to: 'sessions#new'
+  get 'sessions/new'
+  resources :users, only: [:new, :create, :show, :edit, :update]
+  get '/', to: 'users#new'
 end

@@ -1,6 +1,9 @@
 <h1><%= @user.name %>のページ</h1>
-<% if @user.image? %>
-  <%= image_tag @user.image.url %>
+<% if @user.image_name? %>
+      <div class="pull-left" style="margin: 0 20px">
+        <%= image_tag('/user_icon.png', :style => "width: 83px; height: 83px; object-fit: cover;", :class => "img-circle") unless @user.image.url %>
+        <%= image_tag(@user.image.url, :style => "width: 83px; height: 83px; object-fit: cover;", :class => "img-circle") if @user.image.url %>
+      </div>
 <% end %>
 <p>メールアドレス: <%= @user.email %></p>
 <%= link_to '新規投稿', new_feed_path %>

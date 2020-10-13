@@ -1,8 +1,9 @@
 class FeedsController < ApplicationController
   before_action :set_feed, only: [:show, :edit, :update, :destroy]
+  before_action :check_user, only: [:index, :new, :edit, :update, :destroy]
 
   def index
-    @feeds = Feed.all
+    @feeds = Feed.all.order(updated_at: :desc)
   end
 
   def show
@@ -26,6 +27,7 @@ class FeedsController < ApplicationController
 
   def create
     @feed = current_user.feeds.build(feed_params)
+    
     if @feed.save
       redirect_to feeds_path, notice: "投稿しました！"
     else
@@ -57,4 +59,11 @@ class FeedsController < ApplicationController
     def feed_params
       params.require(:feed).permit(:image, :image_cache, :content)
     end
+
+    def check_user
+    unless logged_in?
+      flash[:notice] = "ログインもしくはアカウントを作成してください"
+      redirect_to new_session_url
+    end
+  end
 end

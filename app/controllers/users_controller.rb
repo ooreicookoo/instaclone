@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      session[:user_id] = @user.id
       redirect_to user_path(@user.id)
     else
       render :new
@@ -17,7 +18,13 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(id: params[:id])
+    if @user.update(user_params)
+      flash[:success] = 'プロフィールを編集しました。'
+      redirect_to user_path(@user.id)
+    else
+      flash.now[:danger] = 'プロフィールの編集に失敗しました。'
+      render :edit
+    end
   end
 
   def destroy
@@ -26,7 +33,16 @@ class UsersController < ApplicationController
      redirect_to new_session_path
   end
 
+  private
+
   def user_params
-    params.require(:user).permit(:name, :email, :image, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :image_name, :password, :password_confirmation, :image_name)
+  end
+
+  def check_user
+    unless logged_in?
+      flash[:notice] = "ログインもしくはアカウントを作成してください"
+      redirect_to new_session_url
+    end
   end
 end
