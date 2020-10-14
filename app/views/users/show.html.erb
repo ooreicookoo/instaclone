@@ -5,6 +5,6 @@
 <% end %>
 <p>名前: <%= @user.name %></p>
 <p>メールアドレス: <%= @user.email %></p>
-<p>プロフィール写真: <img src="<%= "/user_images/#{@user.image_name}" %>">
-<p>自己紹介: <%= @user.introduction %></p>
+<p>メールアドレス: <%= @user.email %></p>
+<p>自己紹介: <%= @user.content %></p>
 <%= link_to '新規投稿', new_feed_path %>

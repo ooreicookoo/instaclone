@@ -11,7 +11,7 @@ class FeedsController < ApplicationController
 
   def new
     if params[:back]
-      @feed = Feed.new(feed_params)
+      @feed = current_user.feeds.build
     else
       @feed = Feed.new
     end
