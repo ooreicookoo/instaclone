@@ -27,12 +27,11 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:success] = 'プロフィールを編集しました。'
-      redirect_to user_path(@user.id)
+      redirect_to user_path(@user.id), notice: 'プロフィールを編集しました!'
     else
-      flash.now[:danger] = 'プロフィールの編集に失敗しました。'
-      render :edit
+      render :edit, notice: 'プロフィールの編集に失敗しました。'
     end
   end
 
