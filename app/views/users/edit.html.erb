@@ -1,5 +1,24 @@
-<h1>プロフィール編集画面</h1>
+<h1>編集画面</h1>
 <%= form_with(model: @user, local: true) do |f| %>
-<%= f.label :プロフィール写真 %>
-<%= f.file_field :image %>
+  <div class="form-group">
+      <%= f.label :image_name, 'プロフィール写真の変更', class: "control-label" %>
+      <div class="custom-file">
+         <%= f.file_field :image_name, class: "form-control file custom-file-input" %>
+         <label class="custom-file-label" for="inputFile" data-browse="参照" >ファイルを選択(ここにドロップすることもできます)</label>
+      </div>
+  </div>
+  <%= f.label :名前 %>
+  <%= f.text_field :name %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.label :自己紹介 %>
+  <%= f.text_area :content %>
+
+  <%= f.label :パスワード %>
+  <%= f.password_field :password %>
+  <%= f.label :パスワード（確認） %>
+  <%= f.password_field :password_confirmation %>
+  <%= f.submit "Create my account" %>
 <% end %>

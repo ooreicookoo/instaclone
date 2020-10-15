@@ -27,6 +27,8 @@ gem 'carrierwave'
 
 gem 'mini_magick'
 
+gem 'dotenv-rails'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-rails'
@@ -34,6 +36,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-doc'
   gem 'binding_of_caller'
+  gem 'dotenv-rails'
 end
 
 group :development do
@@ -43,6 +46,7 @@ group :development do
 
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'dotenv-rails'
 end
 
 group :test do
