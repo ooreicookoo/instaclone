@@ -1,9 +1,9 @@
 <h1>編集画面</h1>
 <%= form_with(model: @user, local: true) do |f| %>
   <div class="form-group">
-      <%= f.label :image_name, 'プロフィール写真の変更', class: "control-label" %>
+      <%= f.label :icon, 'プロフィール写真の変更', class: "control-label" %>
       <div class="custom-file">
-         <%= f.file_field :image_name, class: "form-control file custom-file-input" %>
+         <%= f.file_field :icon, class: "form-control file custom-file-input" %>
          <label class="custom-file-label" for="inputFile" data-browse="参照" >ファイルを選択(ここにドロップすることもできます)</label>
       </div>
   </div>
