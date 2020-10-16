@@ -1,4 +1,4 @@
-
+<% if logged_in? %>
 <%= link_to 'プロフィールを編集',edit_user_path %>
 <h1><%= @user.name %>のページ</h1>
 <% if @user.icon? %>
@@ -7,4 +7,5 @@
 <p>メールアドレス: <%= @user.email %></p>
 <p>自己紹介: <%= @user.content %></p>
 <p>プロフィール画像: <%= image_tag @user.icon.url %></p>
+<% end %>
 <%= link_to '新規投稿', new_feed_path %>
