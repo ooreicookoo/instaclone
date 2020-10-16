@@ -1,10 +1,14 @@
 class FeedsController < ApplicationController
   before_action :set_feed, only: [:show, :edit, :update, :destroy]
-  before_action :check_user, only: [:index, :new, :edit, :update, :destroy]
-  before_action :set_current_user
+  before_action :authenticate_with_http_digest, only: [:edit, :update, :destroy]
 
   def index
     @feeds = Feed.all.order(updated_at: :desc)
+    if logged_in?
+      @user = User.find(current_user.id)
+    else
+      @user = User.new
+    end
   end
 
   def show
@@ -67,15 +71,11 @@ class FeedsController < ApplicationController
     params.require(:feed).permit(:image, :image_cache, :content)
   end
 
-  def set_current_user
-    @current_user = User.find_by(id: session[:user_id])
-  end
-
-
-  def check_user
-    unless logged_in?
-      flash[:notice] = "ログインもしくはアカウントを作成してください"
-      redirect_to new_session_url
+  def ensure_correct_user
+    @feed = Feed.find_by(id:params[:id])
+    if @feed.user_id != @current_user.id
+      flash[:notice] = "権限がありません"
+      redirect_to("/feeds")
     end
   end
 end

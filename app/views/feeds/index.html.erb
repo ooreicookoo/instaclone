@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<% if logged_in? %>
 <h1>instag-ramen一覧</h1>
 <table>
     <tr>
@@ -12,12 +12,15 @@
         <td><%= image_tag feed.image.to_s %></td>
         <td><%= feed.content %></td>
         <td><%= link_to '詳細を確認する', feed_path(feed.id) %></td>
+
+        <% if feed.user.id == current_user.id %>
         <td><%= link_to '編集', edit_feed_path(feed.id) %></td>
         <td><%= link_to '削除', feed, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
+        <% end %>
       </tr>
-    <% end %>
+      <% end %>
   </tbody>
 </table>
 <br>
 <%= link_to '新規投稿', new_feed_path %>
+<% end %>
