@@ -1,6 +1,7 @@
 class FeedsController < ApplicationController
   before_action :set_feed, only: [:show, :edit, :update, :destroy]
   before_action :check_user, only: [:index, :new, :edit, :update, :destroy]
+  before_action :set_current_user
 
   def index
     @feeds = Feed.all.order(updated_at: :desc)
@@ -29,12 +30,15 @@ class FeedsController < ApplicationController
   end
 
   def create
-    @feed = current_user.feeds.build(feed_params)
-    if @feed.save
-      redirect_to feeds_path, notice: "投稿しました！"
-    else
-      flash.now[:denger] = '投稿に失敗しました。内容が未記入です'
-      render:new
+      @feed = current_user.feeds.build(feed_params)
+      if params[:back]
+        render :new
+      else
+        if @feed.save
+        redirect_to feeds_path, notice: "投稿しました！"
+      else
+        render:new
+      end
     end
   end
 
@@ -62,6 +66,11 @@ class FeedsController < ApplicationController
   def feed_params
     params.require(:feed).permit(:image, :image_cache, :content)
   end
+
+  def set_current_user
+    @current_user = User.find_by(id: session[:user_id])
+  end
+
 
   def check_user
     unless logged_in?
