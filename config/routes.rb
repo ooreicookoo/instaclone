@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   get 'sessions/new'
   resources :users, only: [:new, :create, :show, :edit, :update]
   get '/', to: 'users#new'
-  resources :favorites, only: [:create, :destroy]
+  resources :favorites, only: [:create, :destroy, :index]
 end

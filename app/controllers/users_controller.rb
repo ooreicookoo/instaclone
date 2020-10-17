@@ -15,7 +15,7 @@ before_action :set_user, only: [:show, :edit, :update]
   def create
     @user = User.new(user_params)
      if @user.save
-      redirect_to user_path(@user.id), notice: "ユーザー登録しました！"
+      redirect_to new_session_path(@user.id), notice: "ユーザー登録しました！ログインしてお使いください"
     else
       render :new
     end

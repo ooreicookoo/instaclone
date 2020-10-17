@@ -1,4 +1,8 @@
 class FavoritesController < ApplicationController
+  def index
+    @favorites = current_user.favorites
+  end
+
   def create
     favorite = current_user.favorites.build(feed_id: params[:feed_id])
     favorite.save
