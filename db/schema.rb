@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 2020_10_17_093532) do
     t.text "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "user_id"
-    t.index ["user_id"], name: "index_favorites_on_user_id"
+    t.integer "user_id"
+    t.integer "feed_id"
   end
 
   create_table "feeds", force: :cascade do |t|
