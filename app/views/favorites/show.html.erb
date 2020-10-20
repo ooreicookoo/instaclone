@@ -1,0 +1,48 @@
+
+<%= render 'header' %>
+<body class ="container">
+  <h1><%= @user.name %>さんのお気に入り一覧</h1>
+  <div class="no_post">
+    <% if @favorites.empty? %>
+      <h3>まだお気に入りはありません</h3>
+    <% end %>
+  </div>
+  <div class="content">
+    <% @favorites.each  do |f| %>
+      <ul class = "index_content">
+        <li>
+          <span class = "post_avatar">
+            <% if form.feed.user.icon.present? %>
+              <%= image_tag(f.feed.user.icon.url) %>
+            <% else %>
+              <%= image_tag("no_image.jpeg") %>
+            <% end %>
+          </span>
+          <span class="user_name">
+            <%= form.feed.user.name %>
+          </span>
+        </li>
+        <li class = "blog_image">
+          <%= image_tag(f.feed.image.url) %>
+        </li>
+        <li>
+          <%= link_to '❤︎　', favorite_path(id: f.id), method: :delete, class: 'btn_not_favorite' %>
+        </li>
+        <li class = "blog_user_name">
+          <%= form.feed.user.name %>
+        </li>
+        <li class="blogs">
+          <%= simple_format f.feed.content %>
+        </li>
+        <li class="time">
+          <%= f.feed.updated_at.strftime("%Y-%m-%d %H:%M") %>
+        </li>
+      </ul>
+    <% end  %>
+  </div>
+  <br>
+  <br>
+  <%= link_to "Back",user_path(@user.id) %>
+  <br>
+  <br>
+</body>
