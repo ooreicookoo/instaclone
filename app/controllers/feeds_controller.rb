@@ -25,10 +25,7 @@ class FeedsController < ApplicationController
 
   def confirm
     @feed = current_user.feeds.build(feed_params)
-    if @feed.invalid?
-      flash.now[:danger] = 'エラー！内容が未記入です'
-      render :new
-    end
+    render :new if @feed.invalid?
   end
 
   def edit
