@@ -25,6 +25,10 @@ before_action :set_user, only: [:show, :edit, :update]
     @user = User.find(params[:id])
   end
 
+  def favorites
+     @user = User.find(params[:id])
+   end
+
   def edit
     @user = User.find(params[:id])
   end

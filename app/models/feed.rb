@@ -5,7 +5,7 @@ class Feed < ApplicationRecord
   mount_uploader :image, ImageUploader
   validates :content, presence: true
 
-  def favorited_by?(user)
-        favorites.where(user_id: user.id).exists?
+  def favorited_by? user
+    favorites.where(user_id: user.id).exists?
   end
 end

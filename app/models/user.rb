@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  has_many :feeds
   has_many :favorites, dependent: :destroy
+  has_many :likes, through: :favorites, source: :feed
   mount_uploader :icon, ImageUploader
   validates :icon, presence: true
   validates :content,  presence: true, length: { maximum: 150 }
