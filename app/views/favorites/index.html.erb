@@ -1,4 +1,34 @@
 <h1>お気に入り一覧</h1>
+<p><%= notice %></p>
 
-<% @favorites.each do |favorite| %>
-<% end %>
+    <div class=row>
+      <div class="top-bottom">
+        <%= link_to "ログアウト", session_path(current_user.id), method: :delete, class: 'btn btn-primary' %>
+        <%= link_to 'ユーザー編集', edit_user_path(current_user.id), class: 'btn btn-primary' %><br><br>
+        <%= link_to '投稿一覧', feeds_path, class: 'btn btn-primary'  %>
+      </div>
+    </div>
+
+    <div class="row">
+      <% if favorite.user.id == current_user.id %>
+      <% @favorites.each do |favorite| %>
+
+        <div class="content">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <p><%= image_tag(favorite.feed.user.image.url, size:'30x30', class:"panel-body.picture")  if favorite.feed.user.image.present?%>         <%= favorite.picture.user.name %></p>
+            </div>
+
+            <div class="panel-body">
+              <br>
+              <%= image_tag(favorite.feed.image.url, size: '410x300', class:"panel-body.picture")  if favorite.feed.image.present?%>
+              <br>
+              <p><%= favorite.feed.content %></p>
+              <div class="panel-body.bottom-text"><%= favorite.feed.created_at %></div>
+            </div>
+          </div>
+        </div>
+
+        <% end %>
+      <% end %>
+    </div>

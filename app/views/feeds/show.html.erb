@@ -16,16 +16,7 @@
       <%= link_to 'お気に入りする', favorites_path(feed_id: @feed.id), method: :post, class: 'btn btn-primary' %>
     <% end %>
   <% end %>
-  <div class="favorite">
-    <% unless @feed.user_id == current_user.id %>
-      <% if @favorite.present? %>
-        <%= link_to 'いいね！を解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
-      <% else %>
-        <%= link_to 'いいね！をする', favorites_path(feed_id: @feed.id), method: :post, class: 'btn btn-primary' %>
-      <% end %>
-        <% end %>
   </div>
 <%= link_to 'Back', feeds_path %>
 <%= link_to '♡する！', favorites_path(feed_id: @feed.id), method: :post, class: 'btn btn-primary' %>
-
 <% end %>
