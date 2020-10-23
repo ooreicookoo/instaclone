@@ -7,6 +7,9 @@
 <p>メールアドレス: <%= @user.email %></p>
 <p>自己紹介: <%= @user.content %></p>
 <p>プロフィール画像: <%= image_tag @user.icon.url %></p>
+
 <% end %>
+
+
 <%= link_to '新規投稿', new_feed_path %>
 <%= link_to 'お気に入り', favorites_path %>
