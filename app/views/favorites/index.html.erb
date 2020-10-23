@@ -20,7 +20,7 @@
 
             <div class="panel-body">
               <br>
-              <%= image_tag(favorite.feed.image.url, size: '400x400', class:"panel-body.picture")  if favorite.feed.image.present?%>
+              <%= image_tag(favorite.feed.image.url, size: '300x300', class:"panel-body.picture")  if favorite.feed.image.present?%>
               <br>
               <p><%= favorite.feed.content %></p>
               <div class="panel-body.bottom-text"><%= favorite.feed.created_at %></div>
