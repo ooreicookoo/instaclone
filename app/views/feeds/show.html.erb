@@ -2,21 +2,21 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Image:</strong>
+  <!-- <strong>Image:</strong><br> -->
   <%= image_tag @feed.image.url %>
 </p>
 <p>
   <strong>内容:</strong>
   <%= @feed.content %></p>
-
+<<div class="favorites_pic">
   <% unless @feed.user_id == current_user.id %>
     <% if @favorite.present? %>
-      <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+      <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-primary' %>
     <% else %>
-      <%= link_to 'お気に入りする', favorites_path(feed_id: @feed.id), method: :post, class: 'btn btn-primary' %>
+      <% link_to 'お気に入りする', favorites_path(feed_id: @feed.id), method: :post, class: 'btn btn-danger' %>
     <% end %>
   <% end %>
   </div>
 <%= link_to 'Back', feeds_path %>
-<%= link_to '♡する！', favorites_path(feed_id: @feed.id), method: :post, class: 'btn btn-primary' %>
+<%= link_to '♡する！', favorites_path(feed_id: @feed.id), method: :post, class: 'btn btn-danger' %>
 <% end %>
