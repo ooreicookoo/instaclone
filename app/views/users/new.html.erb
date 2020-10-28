@@ -1,5 +1,6 @@
-<h1>ユーザー登録</h1>
-<% if @user.errors.any? %>
+<div class="main container">
+  <h2>ユーザー登録</h2>
+  <% if @user.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
     <ul>
@@ -11,31 +12,44 @@
 <% end %>
 <%= form_with(model: @user, local: true) do |f| %>
   <div class="icon_image">
-      <% if @user.icon? %>
+    <% if @user.icon? %>
         <%= image_tag @user.icon.url.to_s, class: ""%>
       <% else %>
         <%= image_tag "default_img.jpg", size: '100x100', class: "bigicon" %>
       <% end %>
   </div>
   <div class="form-group">
-      <%= f.label :icon, 'プロフィール写真の変更', class: "control-label" %>
-      <div class="custom-file">
+    <%= f.label :icon, 'プロフィール写真の変更', class: "control-label" %>
+    <div class="custom-file">
          <%= f.file_field :icon, class: "form-control file custom-file-input" %>
-         <label class="custom-file-label" for="inputFile" data-browse="参照" >ファイルを選択(ここにドロップすることもできます)</label>
-      </div>
+         <label class="custom-file-label" for="inputFile" data-browse="参照" ></label>
+    </div>
   </div>
-  <%= f.label :名前 %>
-  <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.label :name, '名前', class: "sr-only" %>
+    <%= f.text_field :name, placeholder: '名前を入力してください', class: "form-control" %>
+  </div>
+  <div class="form-group">
+  <%= f.label :email, 'email', class: "sr-only" %>
+  <%= f.email_field :email, placeholder: 'メールアドレスを入力してください', class: "form-control" %>
+  </div>
+  <div class="form-group">
+  <%= f.label :email, '自己紹介', class: "sr-only" %>
+  <%= f.text_area :content, placeholder: '自己紹介', class: "form-control" %>
+  </div>
+  <div class="form-group">
+  <%= f.label :password, class: "sr-only" %>
+  <%= f.password_field :password, placeholder: 'パスワード(6文字以上)', class: "form-control" %>
+  </div>
+  <div class="form-group">
+  <%= f.label :password_confirmation, 'パスワード確認', class: "sr-only" %>
+  <%= f.password_field :password_confirmation, placeholder: 'パスワードをもう一度入力してください', class: "form-control" %>
+  </div>
+  <div class="submit">
+  <%= f.submit "アカウント登録", class: "btn btn-lg btn-primary btn-block" %>
+  </div>
+  <br>
+  <div class="form-group"><%= link_to "ログインはこちらから", new_session_path %></div>
+  </div>
 
-  <%= f.label :email %>
-  <%= f.email_field :email %>
-
-  <%= f.label :自己紹介 %>
-  <%= f.text_area :content %>
-
-  <%= f.label :パスワード %>
-  <%= f.password_field :password %>
-  <%= f.label :パスワード（確認） %>
-  <%= f.password_field :password_confirmation %>
-  <%= f.submit "Create my account" %>
 <% end %>
