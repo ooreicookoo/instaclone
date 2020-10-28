@@ -3,14 +3,14 @@
 <h1><%= @user.name %>のページ</h1>
 <% if @user.icon? %>
 <% end %>
+<div class="information">
 <p>名前: <%= @user.name %></p>
 <p>メールアドレス: <%= @user.email %></p>
 <p>自己紹介: <%= @user.content %></p>
-<p>プロフィール画像: <%= image_tag @user.icon.url %></p>
+<p>プロフィール画像: <br></div><%= image_tag @user.icon.url %></p>
 
 <% end %>
-
-
-<%= link_to '新規投稿', new_feed_path %>
-<%= link_to 'お気に入り', favorites_path %>
-<%= link_to '投稿一覧', feeds_path %>
+<br>
+<button type="button" class="btn btn-light"><%= link_to '新規投稿', new_feed_path %>   </button>
+<button type="button" class="btn btn-light"><%= link_to 'お気に入り', favorites_path %>   </button>
+<button type="button" class="btn btn-light"><%= link_to '投稿一覧', feeds_path %><br>   </button>

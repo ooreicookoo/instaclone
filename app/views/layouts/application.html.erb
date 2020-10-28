@@ -1,24 +1,43 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Instagramen</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-　　<meta name="viewport" content="width=device-width">
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-  <body>
-    <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class: "#{key}") %>
-    <% end %>
-    <% if logged_in? %>
-      <%= link_to "Profile", user_path(current_user.id) %>
-      <%= link_to "Logout", session_path(current_user.id), method: :delete %>
+    <head>
+      <title>Instagramen</title>
+      <%= csrf_meta_tags %>
+      <%= csp_meta_tag %>
+      <meta name="viewport" content="width=device-width">
+      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </head>
+
+    <body>
+      <div class="container">
+      <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, class: "#{key}") %>
+      <% end %>
+      <% if logged_in? %>
+    <nav class="navbar navbar-default">
+        <ul class="nav navbar-nav">
+          <li><%= link_to "Instagramen", '/feeds'%></li>
+          <li><%= link_to '新規投稿', '/feeds/new'%></li>
+          <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
+          <li><%= link_to "マイページ", user_path(current_user.id) %></li>
+          <li><%= link_to 'お気に入り', favorites_path %></li>
+        </ul>
+
     <% else %>
-      <%= link_to "Sign up", new_user_path %>
-      <%= link_to "Login", new_session_path %>
+      <br>
+       <div class="Sign up">
+         <% link_to "■ Sign up", new_user_path %>
+       </div>
+       <div class="Login">
+         <% link_to "■ Login", new_session_path %>
+       </div>
     <% end %>
+    </nav>
     <%= yield %>
-  </body>
+    <br><br>
+    <footer>
+         <p>&copy; 2020 R.enomoto</p>
+     </footer>
+     </div>
 </html>
