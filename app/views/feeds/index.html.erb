@@ -1,12 +1,11 @@
 <% if logged_in? %>
-<h1>instag-ramen一覧</h1>
-
 <table>
     <tr>
       <th>Image</th>
       <th>内容</th>
     </tr>
   <tbody>
+    <div class="row">
     <% @feeds.each do |feed| %>
       <tr>
         <% if feed.user.id == current_user.id %>
@@ -23,8 +22,9 @@
         <% end %>
       </tr>
       <% end %>
+      </div>
   </tbody>
 </table>
 <br>
 <%= link_to '新規投稿', new_feed_path %>
-      <% end %>
+<% end %>
