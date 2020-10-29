@@ -8,3 +8,41 @@ form p {
 p.article {
   text-align: center;
 }
+
+.panel.panel-info {
+  width: 600px;
+  text-align: center;
+}
+.icon_size img {
+  border-radius: 50%;
+}
+
+h3 {
+  text-align: left;
+  margin-left: 50px;
+}
+
+.user_name {
+  text-align: left;
+}
+
+.icon_size {
+  text-align: left;
+}
+
+.favorite_content {
+  width: 400px;
+}
+
+ul {
+  overflow: hidden;
+  letter-spacing: -.5em;
+}
+
+li {
+   display: inline-block;
+   width: 20%;
+   vertical-align: middle;
+   letter-spacing: 0;
+   text-align: center;
+}
