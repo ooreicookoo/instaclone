@@ -13,36 +13,16 @@ p.article {
   width: 600px;
   text-align: center;
 }
-.icon_size img {
+.icon_size_feed img {
   border-radius: 50%;
-}
-
-h3 {
-  text-align: left;
-  margin-left: 50px;
 }
 
 .user_name {
   text-align: left;
 }
 
-.icon_size {
+div.icon_size_feed {
   text-align: left;
-}
-
-.favorite_content {
+  margin-left: 30px;
   width: 400px;
-}
-
-ul {
-  overflow: hidden;
-  letter-spacing: -.5em;
-}
-
-li {
-   display: inline-block;
-   width: 20%;
-   vertical-align: middle;
-   letter-spacing: 0;
-   text-align: center;
 }

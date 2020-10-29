@@ -1,33 +1,28 @@
-
 <% if logged_in? %>
-<div class="box">
-<table>
-    <tr>
-      <th>Image</th>
-      <th>内容</th>
-    </tr>
-  <tbody>
-    <div class="row">
-    <% @feeds.each do |feed| %>
-      <tr>
-        <% if feed.user.id == current_user.id %>
-          <td><%= link_to @user.name, user_path(current_user.id) %></td>
+  <% @feeds.each do |feed| %>
+  <div class="content">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <%= image_tag(feed.image.to_s, size: '400x400', class:"panel-body.picture") %>
+
+        <div class="icon_size_feed">
+          <%= image_tag(@user.icon.url, size: '50x50') %>
+        <% if feed.user.id == current_user.id %><br>
+          <%= link_to @user.name, user_path(current_user.id) %>
         <% else %>
-          <td><%=  feed.user.name %></td>
-　　　　　<% end %>
-        <td class="img-fluid" alt="Responsive image"><%= image_tag feed.image.to_s %></td>
-        <td><%= feed.content %></td>
-        <td><%= link_to '詳細を確認する', feed_path(feed.id) %></td>
-        <% if feed.user.id == current_user.id %>
-          <td><%= link_to '編集', edit_feed_path(feed.id) %></td>
-          <td><%= link_to '削除', feed, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <%=  feed.user.name %>
         <% end %>
-      </tr>
-      <% end %>
+        </div>
+      <div class="favorite_content">
+        <%= feed.content %><br>
+        <%= link_to '詳細を確認する', feed_path(feed.id) %>
+        <% if feed.user.id == current_user.id %>
+        <%= link_to '編集', edit_feed_path(feed.id) %>
+        <%= link_to '削除', feed, method: :delete, data: { confirm: 'Are you sure?' } %>
+         <% end %>
       </div>
-  </tbody>
-</table>
+    </div>
+  </div>
 </div>
-<br>
-<%= link_to '新規投稿', new_feed_path %>
+<% end %>
 <% end %>
