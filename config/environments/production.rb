@@ -12,7 +12,7 @@ Rails.application.configure do
 
   config.assets.js_compressor = :uglifier
 
-  # config.assets.compile = true
+  config.assets.compile = true
 
   config.assets.initialize_on_precompile = false
 
@@ -29,6 +29,8 @@ Rails.application.configure do
   config.active_support.deprecation = :notify
 
   config.log_formatter = ::Logger::Formatter.new
+
+  config.action_mailer.delivery_method = :letter_opener_web
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
