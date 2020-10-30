@@ -29,6 +29,8 @@ gem 'mini_magick'
 
 gem 'dotenv-rails'
 
+gem 'rails_12factor', group: :production
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-rails'
