@@ -40,6 +40,7 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'dotenv-rails'
   gem 'faker'
+  gem 'sqlite3'
 end
 
 group :development do
@@ -60,4 +61,4 @@ group :test do
   gem 'chromedriver-helper'
 end
 
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+  gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

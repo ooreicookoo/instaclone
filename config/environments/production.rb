@@ -12,7 +12,9 @@ Rails.application.configure do
 
   config.assets.js_compressor = :uglifier
 
-  config.assets.compile = false
+  # config.assets.compile = true
+
+  config.assets.initialize_on_precompile = false
 
   config.active_storage.service = :local
 
@@ -36,7 +38,7 @@ Rails.application.configure do
 
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { host: 'morning-stream-35613.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'shrouded-taiga-97335.herokuapp.com' }
     ActionMailer::Base.delivery_method = :smtp
     ActionMailer::Base.smtp_settings = {
       user_name: ENV['SENDGRID_USERNAME'],
