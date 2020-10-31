@@ -1,6 +1,7 @@
 <br>
 <h3>新規投稿</h3>
-
+<% if logged_in? %>
 <%= render 'form', feed: @feed %>
-
-<%= link_to 'Back', feeds_path %>
+<% else %>
+<%= link_to "ログインまたは新規登録はこちらから", new_session_path %>
+<% end %>

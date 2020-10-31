@@ -1,6 +1,6 @@
 class FeedsController < ApplicationController
   before_action :set_feed, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_with_http_digest, only: [:edit, :update, :destroy]
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
     @feeds = Feed.all.order(updated_at: :desc)
@@ -71,9 +71,8 @@ class FeedsController < ApplicationController
   end
 
   def ensure_correct_user
-    @feed = Feed.find_by(id:params[:id])
-    if @feed.user_id != @current_user.id
-      flash[:notice] = "権限がありません"
+    unless logged_in?
+      flash[:notice] = "ログインもしくはアカウントを作成してください"
       redirect_to("/feeds")
     end
   end
