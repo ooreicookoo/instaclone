@@ -6,9 +6,9 @@
         <%= image_tag(feed.image.to_s, size: '400x400', class:"panel-body.picture") %>
 
         <div class="icon_size_feed">
-          <%= image_tag(@user.icon.url, size: '50x50') %>
+          <%= image_tag(feed.user.icon.url, size: '50x50') %>
         <% if feed.user.id == current_user.id %><br>
-          <%= link_to @user.name, user_path(current_user.id) %>
+          <%= link_to feed.user.name, user_path(current_user.id) %>
         <% else %>
           <%=  feed.user.name %>
         <% end %>

@@ -4,11 +4,6 @@ class FeedsController < ApplicationController
 
   def index
     @feeds = Feed.all.order(updated_at: :desc)
-    if logged_in?
-      @user = User.find(current_user.id)
-    else
-      @user = User.new
-    end
   end
 
   def show
